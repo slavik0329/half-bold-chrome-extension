@@ -24,7 +24,7 @@ function App() {
           const decoded = findContent($, 'txt');
           console.log('tx', decoded.content)
 
-          chrome.tabs.create({ url: `http://localhost:3000/?content=${encodeURIComponent(decoded.content)}` });
+          chrome.tabs.create({ url: `https://halfbold.com/?content=${encodeURIComponent(decoded.content)}` });
         }
       });
     });
@@ -32,20 +32,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo"/>
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
     </div>
   );
 }
