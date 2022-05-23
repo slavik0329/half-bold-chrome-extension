@@ -1,9 +1,7 @@
 import React, {useEffect} from 'react';
-import logo from './logo.svg';
 import './App.css';
-import * as cheerio from 'cheerio';
-// @ts-ignore
-import {findContent} from "find-main-content";
+import {Readability} from "@mozilla/readability";
+import gzip from "gzip-js";
 
 
 function App() {
@@ -19,12 +17,21 @@ function App() {
           console.error(chrome.runtime.lastError.message);
         } else {
           const html = result[0].result;
-          const $ = cheerio.load(html);
 
-          const decoded = findContent($, 'txt');
-          console.log('tx', decoded.content)
+          const doc = (new DOMParser()).parseFromString(html, 'text/html');
+          const reader = new Readability(doc);
+          const article = reader.parse();
+          console.log('html', html)
+          console.log('doc', doc)
+          console.log('tx', article?.textContent)
 
-          chrome.tabs.create({ url: `https://halfbold.com/?content=${encodeURIComponent(decoded.content)}` });
+          if (article?.textContent) {
+
+            const gzipped = gzip.zip(article.textContent, {level: 9});
+            const base64 = btoa(String.fromCharCode.apply(null, gzipped))
+
+            chrome.tabs.create({url: `https://halfbold.com/?content=${encodeURIComponent(base64)}`});
+          }
         }
       });
     });

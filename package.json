@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mozilla/readability": "^0.4.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -10,8 +11,7 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "cheerio": "^1.0.0-rc.11",
-    "find-main-content": "https://github.com/slavik0329/find-main-content",
+    "gzip-js": "^0.3.2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-scripts": "5.0.1",
@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.188"
+    "@types/chrome": "^0.0.188",
+    "@types/gzip-js": "^0.3.3"
   }
 }
