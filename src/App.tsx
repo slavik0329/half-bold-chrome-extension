@@ -26,8 +26,8 @@ function App() {
           console.log('tx', article?.textContent)
 
           if (article?.textContent) {
-
-            const gzipped = gzip.zip(article.textContent, {level: 9});
+            const content = article.title + "\n\n" + article.textContent;
+            const gzipped = gzip.zip(content, {level: 9});
             const base64 = btoa(String.fromCharCode.apply(null, gzipped))
 
             chrome.tabs.create({url: `https://halfbold.com/?content=${encodeURIComponent(base64)}`});
